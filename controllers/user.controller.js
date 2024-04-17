@@ -47,7 +47,7 @@ exports.loginUser = async (req, res) => {
     if (!isPasswordValid) {
       return res
         .status(401)
-        .send({ message: "Please provide the correct information" });
+        .send({ msg: "Please provide the correct information" });
     }
 
     sendToken(user, 201, res);
@@ -68,7 +68,7 @@ exports.logoutUser = async (req, res, next) => {
     });
     res.status(200).send({
       success: true,
-      message: "Log out successful!",
+      msg: "Log out successful!",
     });
   } catch (error) {
     res.status(500).send(error);
