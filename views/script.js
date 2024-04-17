@@ -3,6 +3,7 @@ const searchButton = document.querySelector(".search-btn");
 const locationButton = document.querySelector(".location-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const weatherCardsDiv = document.querySelector(".weather-cards");
+const logoutBtn = document.querySelector(".logout-btn");
 
 const API_KEY = "6f526ab2c784817145477c35e7190272";
 
@@ -101,3 +102,27 @@ const getUserCoordinates = () => {
 locationButton.addEventListener("click", getUserCoordinates);
 searchButton.addEventListener("click", getCityCoordinates);
 cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates());
+logoutBtn.addEventListener("click", function () {
+    fetch("/api/user/logout", {
+        method: "GET",
+        // Browser will automatically send cookie
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+    .then((response) => {
+        return response.json(); 
+    })
+    .then((data) => {
+        if (data) {
+            alert(data?.msg);
+            localStorage.clear();
+            window.location.href = "/login";
+        } else {
+            throw new Error("Logout failed!");
+        }
+    })
+    .catch((error) => {
+        alert(error);
+    });
+})

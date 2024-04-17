@@ -70,10 +70,17 @@ h1 {
   background: #2c52ed;
 }
 .weather-input .location-btn {
+  margin-bottom: 10px;
   background: #6C757D;
 }
 .weather-input .location-btn:hover {
   background: #5c636a;
+}
+.weather-input .logout-btn {
+  background: #f6280d;
+}
+.weather-input .logout-btn:hover {
+  background: #e94a1a;
 }
 .weather-data {
   width: 100%;
