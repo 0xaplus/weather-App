@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const { connectToMongoDB } = require("./config/db");
 const userRouter = require("./routes/user.routes");
+const cookieParser = require('cookie-parser');
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ const app = express();
 connectToMongoDB();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(bodyParser.json());
 // Serve static files from the 'views' directory
 app.use(express.static(path.join(__dirname, 'views')));
